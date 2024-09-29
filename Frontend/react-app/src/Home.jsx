@@ -32,10 +32,12 @@ function Home() {
                   index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50'
                 } hover:bg-gray-200 transition-colors`}>
                   <td className="py-4 px-6">{student.id}</td>
-                  <td className="py-4 px-6">{student.name}</td>
-                  <td className="py-4 px-6">{student.email}</td>
+                  <td className="py-4 px-6 text-left">{student.name}</td>
+                  <td className="py-4 px-6 text-left font-normal">{student.email}</td>
                   <td className="py-4 px-6">
-                  <button className='bg-blue-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-blue-600 transition-all'>Show</button>
+                    <Link to={`/read/${student.id}`}>
+                    <button className='bg-blue-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-blue-600 transition-all'>Show</button>
+                    </Link>
                     <button className='bg-yellow-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-yellow-600 transition-all'>Edit</button>
                     <button className="bg-red-500 text-white rounded-md py-2 px-4 hover:bg-red-600 transition-all">Delete</button>
                   </td>

@@ -32,6 +32,16 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/read/:id', (req, res) => {
+    const sql = "SELECT * FROM student WHERE id = ?";
+    const id = req.params.id;
+    
+    db.query(sql, [id], (err, result) => {
+        if(err) return res.json({Message: "Error inside server"});
+        return res.json(result);
+    })
+})
+
 app.post('/create', (req, res) => {
     const { name, email } = req.body;
 

@@ -34,13 +34,13 @@ function Create() {
     <>
   <h1 className='text-center font-bold text-4xl py-6 bg-blue-900 text-white shadow-md'>Create New Student</h1>
   <div className="flex justify-center py-10 bg-gray-100">
-        <div className="w-11/12 max-w-5xl bg-white shadow-lg rounded-lg p-8">
-          <form onSubmit={handleSubmit} className="bg-gray-50 p-6 rounded-lg">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-8">
+          <form onSubmit={handleSubmit} className="p-6 rounded-lg">
+            <div className="grid grid-cols-1 gap-6">
               <div className="col-span-1">
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-lg font-medium text-gray-700 mb-2"
                 >
                   Student Name
                 </label>
@@ -58,7 +58,7 @@ function Create() {
               <div className="col-span-1">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-lg font-medium text-gray-700 mb-2"
                 >
                   Email
                 </label>
