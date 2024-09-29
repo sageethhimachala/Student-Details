@@ -44,7 +44,7 @@ function Create() {
 
   return (
     <>
-  <h1 className='text-center font-bold text-4xl py-6 bg-blue-900 text-white shadow-md'>Create New Student</h1>
+  <h1 className='text-center font-bold text-4xl py-6 bg-blue-900 text-white shadow-md'>{user.id ? 'Update Student Details' : 'Create New Student'}</h1>
   <div className="flex justify-center py-10 bg-gray-100">
         <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-8">
           <form onSubmit={handleSubmit} className="p-6 rounded-lg">
