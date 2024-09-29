@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 function Read() {
+
+  const navigate = useNavigate();
 
   const {id} = useParams();
   const [student, setStudent] = useState({
@@ -26,7 +28,7 @@ function Read() {
     <div className="flex justify-center py-10 bg-gray-100">
         <div className="w-11/12 max-w-4xl bg-white shadow-lg rounded-lg p-8 border border-gray-200">
           <div className="space-y-4">
-            {/* Student ID */}
+            
             <div className="grid items-center p-4 bg-gray-50 rounded-lg shadow-sm">
               <p className='text-lg font-semibold text-gray-500'>
                 Student ID :
@@ -35,7 +37,7 @@ function Read() {
                 {student.id}
               </p>
             </div>
-            {/* Name */}
+            
             <div className="grid items-center p-4 bg-gray-50 rounded-lg shadow-sm">
               <p className='text-lg font-semibold text-gray-500'>
                 Name :
@@ -44,7 +46,7 @@ function Read() {
                 {student.name}
               </p>
             </div>
-            {/* Email */}
+            
             <div className="grid items-center p-4 bg-gray-50 rounded-lg shadow-sm">
               <p className='text-lg font-semibold text-gray-500'>
                 Email :
@@ -56,9 +58,20 @@ function Read() {
           </div>
 
           <div className="mt-6 text-right">
+
+              <button onClick={() => {navigate('/create',
+                {
+                  state: student
+                }
+              )}}
+                className="bg-green-600 text-white rounded-md py-3 px-6 font-bold hover:bg-green-700 transition-all shadow-md mr-5"
+              >
+                Edit
+              </button>
+
             <Link to="/">
               <button
-                className="bg-green-600 text-white rounded-md py-3 px-6 font-bold hover:bg-green-700 transition-all shadow-md"
+                className="bg-blue-600 text-white rounded-md py-3 px-6 font-bold hover:bg-blue-700 transition-all shadow-md"
               >
                 Student List
               </button>

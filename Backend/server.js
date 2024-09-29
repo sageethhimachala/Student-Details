@@ -43,13 +43,21 @@ app.get('/read/:id', (req, res) => {
 })
 
 app.post('/create', (req, res) => {
-    const { name, email } = req.body;
+    const { id, name, email } = req.body;
 
-    const sql = "INSERT INTO student (name, email) VALUES (?, ?)";
-    db.query(sql, [name, email], (err, result) => {
+    if (id) {
+        const sql = `UPDATE student SET name = ? , email = ? WHERE id = ?`;
+        db.query(sql, [name, email, id], (err, result) => {
         if(err) return res.json({Message: "Error inserting data into database"});
         return res.json({ Message: "Student successfully created", data: result });
     })
+    } else {
+        const sql = "INSERT INTO student (name, email) VALUES (?, ?)";
+        db.query(sql, [name, email], (err, result) => {
+        if(err) return res.json({Message: "Error inserting data into database"});
+        return res.json({ Message: "Student successfully created", data: result });
+    })
+    }
 })
 
 app.listen(8081, () => {

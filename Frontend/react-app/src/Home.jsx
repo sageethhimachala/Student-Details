@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
+
+  const navigate = useNavigate()
 
   const [data, setData] = useState([])
 
@@ -11,6 +13,8 @@ function Home() {
         .then(res => setData(res.data))
         .catch(err => console.log(err));
     }, [])
+
+    console.log(data)
 
   return (
   <>
@@ -38,18 +42,18 @@ function Home() {
                     <Link to={`/read/${student.id}`}>
                     <button className='bg-blue-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-blue-600 transition-all'>Show</button>
                     </Link>
-                    <button className='bg-yellow-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-yellow-600 transition-all'>Edit</button>
+
+                    <button  className='bg-yellow-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-yellow-600 transition-all'>Edit</button>
+                    
                     <button className="bg-red-500 text-white rounded-md py-2 px-4 hover:bg-red-600 transition-all">Delete</button>
                   </td>
                 </tr>
               })}
               <tr>
                 <td colSpan="4" className="text-right py-6">
-                  <Link to="/create">
-                  <button className="bg-green-600 text-white rounded-md py-3 px-6 font-bold hover:bg-green-700 transition-all">
+                  <button onClick={() => {navigate('/create')}} className="bg-green-600 text-white rounded-md py-3 px-6 font-bold hover:bg-green-700 transition-all">
                     Create New Student
                   </button>
-                  </Link>
                 </td>
               </tr>
             </tbody>

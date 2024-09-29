@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Create() {
 
     const navigate = useNavigate()
+    
+    const location = useLocation();
+
+    const user = location.state || {};
+
+    console.log(user)
 
     const [form, setForm] = useState({
-        name: "",
-        email: ""
+      id: "",
+      name: "",
+      email: ""
     })
+
+    useEffect(() => {
+      setForm(user)
+    }, [])
+
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -78,9 +90,15 @@ function Create() {
                 
               <button
                 type="submit"
-                className="bg-green-600 text-white rounded-md py-3 px-6 font-bold hover:bg-green-700 transition-all"
+                className="bg-green-600 text-white rounded-md py-3 px-6 mr-5 font-bold hover:bg-green-700 transition-all"
               >
-                Add Student
+                {user.id ? 'Update' : 'Add Student'} 
+              </button>
+              <button
+                onClick={() => {navigate('/')}}
+                className="bg-blue-600 text-white rounded-md py-3 px-6 font-bold hover:bg-blue-700 transition-all"
+              >
+                Student List
               </button>
             
             </div>
