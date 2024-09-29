@@ -49,7 +49,7 @@ app.post('/create', (req, res) => {
         const sql = `UPDATE student SET name = ? , email = ? WHERE id = ?`;
         db.query(sql, [name, email, id], (err, result) => {
         if(err) return res.json({Message: "Error inserting data into database"});
-        return res.json({ Message: "Student successfully created", data: result });
+        return res.json({ Message: "Data successfully updated", data: result });
     })
     } else {
         const sql = "INSERT INTO student (name, email) VALUES (?, ?)";
@@ -58,6 +58,16 @@ app.post('/create', (req, res) => {
         return res.json({ Message: "Student successfully created", data: result });
     })
     }
+})
+
+app.delete('/delete/:id', (req, res) => {
+    const sql = "DELETE FROM student WHERE id = ?";
+    const id = req.params.id;
+    
+    db.query(sql, [id], (err, result) => {
+        if(err) return res.json({Message: "Error inside server"});
+        return res.json(result);
+    })
 })
 
 app.listen(8081, () => {

@@ -14,7 +14,13 @@ function Home() {
         .catch(err => console.log(err));
     }, [])
 
-    console.log(data)
+    const handleDelete = (id) => {
+      axios.delete('http://localhost:8081/delete/' + id)
+      .then(() => {
+        location.reload()
+      })
+      .catch(err => console.log(err))
+    }
 
   return (
   <>
@@ -48,7 +54,10 @@ function Home() {
                     }
                     )}} className='bg-green-500 text-white rounded-md py-2 px-4 mr-3 hover:bg-green-600 transition-all'>Edit</button>
                     
-                    <button className="bg-red-500 text-white rounded-md py-2 px-4 hover:bg-red-600 transition-all">Delete</button>
+                    <button onClick={() => {
+                      handleDelete(student.id)
+                    }
+                    } className="bg-red-500 text-white rounded-md py-2 px-4 hover:bg-red-600 transition-all">Delete</button>
                   </td>
                 </tr>
               })}
